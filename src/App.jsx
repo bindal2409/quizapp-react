@@ -40,8 +40,12 @@ function App() {
     setCurrentQuestion(currentQuestion+1);
   }
 
-  function checkAnswer(){
-    
+  function checkAnswer(option) {
+    if(option.isCorrect) {
+      console.log("Correct answer");
+    } else {
+      console.log("Wrong answer");
+    }
   }
 
   return (
@@ -56,7 +60,9 @@ function App() {
           </div>
         </div>
         <div className="answer-section">
-            {quizQuestions[currentQuestion].options.map(option =><button onClick={checkAnswer}>{option.answer}</button>)}
+            {quizQuestions[currentQuestion].options.map(option =><button onClick=
+            {()=>checkAnswer(option)}>{option.answer}
+            </button>)}
         </div>
       </div>
       {/* Button to show next section*/}
