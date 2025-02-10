@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import './App.css'
 
 function App() {
 
-  const currentQuestion=0;
+  let [currentQuestion,setCurrentQuestion]=useState(0);
 
   const quizQuestions=[
     {
@@ -32,22 +33,36 @@ function App() {
         { answer:'O(n^2)',isCorrect:false},
       ]
     },      
-  ]
+  ];
+
+  function onNextClick(){
+    if(currentQuestion==quizQuestions.length-1) return;
+    setCurrentQuestion(currentQuestion+1);
+  }
+
+  function checkAnswer(){
+    
+  }
 
   return (
-    <div className="app">
+    <div className="card-wrapper">
+      <div className="app">
         <div className="question-section">
           <div className="question-count">
             <span>Question {currentQuestion+1}</span>/ {quizQuestions.length}
           </div>
           <div className="question-text">
-            {quizQuestions[0].question}
+            {quizQuestions[currentQuestion].question}
           </div>
         </div>
         <div className="answer-section">
-            {quizQuestions[0].options.map(option =><button>{option.answer}</button>)}
+            {quizQuestions[currentQuestion].options.map(option =><button onClick={checkAnswer}>{option.answer}</button>)}
         </div>
+      </div>
+      {/* Button to show next section*/}
+      <button onClick={onNextClick}>Next</button>
     </div>
+    
   )
 }
 
