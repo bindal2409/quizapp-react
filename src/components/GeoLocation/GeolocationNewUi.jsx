@@ -1,4 +1,9 @@
-export default function GeolocationNewUi({latitude,longitude}){
+import useGeolocation from "../hooks/useGeolocation";
+
+export default function GeolocationNewUi(){
+
+    const [latitude,longitude]=useGeolocation();
+
     return (
         <div>
             <h1>Geolocation:</h1>
