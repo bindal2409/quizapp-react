@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './App.css'
+import AnswerSection from './components/AnswerSection';
+import GeolocationContainer from './components/GeoLocation/GeolocationContainer';
+import Geolocation from './components/GeoLocation/GeoLocation';
 
 function App() {
 
@@ -50,6 +53,9 @@ function App() {
 
   return (
     <div className="card-wrapper">
+      <GeolocationContainer>
+        <Geolocation/>
+      </GeolocationContainer>
       <div className="app">
         <div className="question-section">
           <div className="question-count">
@@ -59,11 +65,12 @@ function App() {
             {quizQuestions[currentQuestion].question}
           </div>
         </div>
-        <div className="answer-section">
+        {/* <div className="answer-section">
             {quizQuestions[currentQuestion].options.map(option =><button onClick=
             {()=>checkAnswer(option)}>{option.answer}
             </button>)}
-        </div>
+        </div> */}
+        <AnswerSection question={quizQuestions[currentQuestion]} onAnswerClick={checkAnswer}/>
       </div>
       {/* Button to show next section*/}
       <button onClick={onNextClick}>Next</button>
